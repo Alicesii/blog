@@ -1,4 +1,4 @@
-# 目录
+#### 目录
 
 ## Ajax
 
@@ -117,11 +117,18 @@
 ## JavaScript
 
 ### 2-
+
+### 2-
+
 ### 3-
+
 ### 4-
+
 ### 面向对象的JavaScript
-### this call和apply
+
 ### 闭包
+
+### this、call和apply
 
 ## Git
 
