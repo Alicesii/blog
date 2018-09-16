@@ -10,14 +10,14 @@ about:
 
 > 在Web项目中，要实现客户端与服务端的交互，可通过cookie、隐藏框架、使用iframe、HTTP请求、LiveConnect请求和智能HTTP请求等方式实现。下面我就来一一的说下。
 
-一．cookie
+一、cookie
 
  cookie是第一个JavaScript可以利用的客户端-服务端之间的交互手段。浏览器向服务器发送请求时，为这个服务器存储的cookie会与其他信息一起发送到服务器。这使得JavaScript可以在客户端设置一个cookie，之后服务器端就能够读取它了。
  我截取了百度首页的cookie的情况，如下图。
 
 ![ ](http://images.cnblogs.com/cnblogs_com/cliy-10/1232440/o_1.png)
 
-1 cookie的成分
+1.cookie的成分
 
 * 名称(name):每一个cookie由一个唯一的名称代表。这个名称可以包含字母、数字和下划线。不区分大小写。
 
@@ -41,16 +41,13 @@ document.write(encodeURIComponent(",/?:@&=+$#"))
 </script>
 
 ```
-
 输出结果:
 
 ```javascript
 http%3A%2F%2Fwww.w3school.com.cn
 http%3A%2F%2Fwww.w3school.com.cn%2Fp%201%2F
 %2C%2F%3F%3A%40%26%3D%2B%24%23
-
 ```
-
 * 域(Domain):处于安全考虑，网站不能访问其他域创建的cookie。创建cookie后，域的信息会作为cookie的一部分存储起来。
 
 同源策略是浏览器的一种安全策略，所谓同源是指，域名，协议，端口完全相同。
@@ -84,9 +81,7 @@ http://baidu.com/b.js 同一域名，不同二级域名（同上） 不允许（
 
 http://www.hao123.com/a.js
 http://www.haorooms.com/b.js 不同域名 不允许
-
 ```
-
 * 路径(path):另一个cookie的安全特性，路径限制了对Web服务器上的特定目录的访问。
 
 * 失效日期(Expires/Max-Age):确定cookie何时删除。默认情况下，关闭浏览器时，
@@ -96,14 +91,14 @@ http://www.haorooms.com/b.js 不同域名 不允许
  
 * 安全标志(Secure)：用于表示cookie是否只能从安全网站（使用SSL和https协议的网站）中访问。可以将这个值设为true以加强保护，进而确保cookie不被其他网站访问。
 
-2 其他安全限制
+2.其他安全限制
 
 * 每个域最多只能只能在一台用户的机器上存储20个cookie；
 
 * 每个cookie的总尺寸不能超过4096字节；
 * 一台用户的机器上的cookie总数不能超过30个。
 
-3 举例:
+3.举例:
 
 * setCookie方法：给cookie属性上赋值
 
@@ -137,7 +132,6 @@ http://www.haorooms.com/b.js 不同域名 不允许
       setCookie("message", "hello", new Date(Date.parse('1 10,2019')), "/books", 'http://127.0.0.1:8020', true);
     </script>
 ```
-
 运行结果：
 
 ![ ](http://images.cnblogs.com/cnblogs_com/cliy-10/1232440/o_2.png)
@@ -155,10 +149,8 @@ http://www.haorooms.com/b.js 不同域名 不允许
   setCookie('password','123456',7)
     
 </script>
-
 ```
-
-  运行结果 ：
+运行结果：
 
 ![ ](http://images.cnblogs.com/cnblogs_com/cliy-10/1232440/o_3.png)
 
@@ -197,9 +189,7 @@ function deleteCookie(sName, sPath, sDomain) {
 }
 
 ```
-
-
-4 JavaScript中的cookie
+4.JavaScript中的cookie
 
 doucment对象有个cookie特性，是包含所有给定页面可访问的cookie的字符串，cookie特性设置为新值只会改变对页面可访问的cookie，并不会真正改变cookie本身。
 
@@ -215,8 +205,7 @@ setCookie()函数
 getCookie()函数
 deleteCookie()函数
 ```
-
-5 服务器端的cookie：JSP
+5.服务器端的cookie：JSP
 
  Jsp提供了非常简单的处理cookie的接口，request对象会在执行JSP时自动初始化，有一个返回一个Cookie对象数组的方`getCookies()`方法。每个Cookie对象都具有`getName()`，`getPath()`，`getDomain()`，`getSecure()`，`getMaxAge()`等方法。
 
@@ -242,7 +231,6 @@ public static Cookie getCookie(HttpServletRequest request, String name) {
     }
 }
 ```
-
 * 新建一个cookie：
 
 ```javascript
@@ -254,7 +242,6 @@ nameCookie.setPath("/books");
 
 response.addCookie(nameCookie);
 ```
-
 * 删除cookie：
 
 ```
@@ -264,9 +251,7 @@ cookieToDelete.setMaxAge(0);  //设置有效时间为0
 
 response.addCookie(cookieToDelete);
 ```
-
-
-二．隐藏框架
+二、隐藏框架
 
 创建一个可用JavaScript与服务器进行通信的0像素高的框架,用于处理客户端通信的JavaScript对象和在服务端处理通信的特殊页面。
 
@@ -277,7 +262,6 @@ getServerInfo()：发送请求函数
 
 handleResponse()：在隐藏框架从服务器返回页面之后调用
 ```
-
 发送请求的函数如下：
 
 ```javascript
@@ -288,7 +272,6 @@ function getServerInfo() {
 
 }
 ```
-
 处理回应的函数`handleResponse()`如下：
 
 ```javascript
@@ -298,7 +281,6 @@ function handleResponse(sResponseTextt) {
 
 }
 ```
-
 处理隐藏请求的页面必须输出一个普通的HTML页面，需要使用`<textarea/>`元素，方便的处理多行数据，这个页面必须在主框架中调用`handleResponse()`函数。
 
 ```javascript
@@ -320,10 +302,8 @@ function handleResponse(sResponseTextt) {
     </form>
   </body>
 </html>
-
 ```
-
-三．HTTP请求
+三、HTTP请求
 
  现在很多浏览器都可以直接从JavaScript中初始化HTTP请求并获取结果，完全不用隐藏框架和其他取巧的小技巧。核心是，微软创建的XMLHTTP请求的对象。这个对象是与MSXML一起出现的，XMLHTTP请求实质上是添加了额外的用于发送和接收XML代码的功能的普通的HTTP请求。
 
@@ -350,7 +330,6 @@ function createXMLHTTP() {
      }
 </script>
 ```
-
 创建好HTTP请求后可用`open()`方法来指定要发送的请求,参数如下：
 
 * 第一个参数：值可为"get"或"post"，或其他受服务器支持的HTTP方法；
@@ -366,7 +345,6 @@ function createXMLHTTP() {
 举例:`oRequest.send(null);`
 
 一个完整的栗子：创建、打开、发送(同步发送)。
-
 
 ```javascript
     <script type="text/javascript">
@@ -392,7 +370,6 @@ function createXMLHTTP() {
     </
 script>
 ```
-
 结果会获取服务器端的一个纯文本文件`(example.txt)`，也就是说以同步的方式请求该txt文件，然后在浏览器中显示此内容。如果使用同步调用（第三个参数为false），则JavaScript解释程序就会等待请求返回,返回响应后，status特性中会放入请求的HTTP状态，同时在`statuesText`特性中放入描述状态的信息，在`responseText`特性放入服务器上接收到的文本。
 
 运行结果：
@@ -429,17 +406,13 @@ script>
           }
    }
           oRequest.send(null);
-
     </script>
-
 ```
-
 运行结果：
 
 ![ ](http://images.cnblogs.com/cnblogs_com/cliy-10/1232440/o_5.png)
 
-
-1. 使用HTTP头部
+1.使用HTTP头部
 
 每个HTTP请求发送时都包含一组带有额外信息的首部，在XML HTTP请求对象提供了获取和设置它们的方法
 
@@ -453,12 +426,11 @@ script>
 
 `oRequest. setResponseHeader("myheader", "Asci");`
 
-2. 实现的复制品
+2.实现的复制品
 
 Mozilla第一个复制了XMLHTTP实现，创建了名为XMLHTTPRequest的JavaScript，行为完全与微软的版本相同，Opera(7.6)和Safari（1.2）也复制了Mozilla的实现，创建了自己的XMLHTTPRequest对象。
 
-
-3. 进行GET请求
+3.进行GET请求
 
 Web上最常见的请求类型就是GET请求，每次在浏览器中输入URL并打开页面时，就是像服务器发送一个GET请求,GET请求的参数就是用问号追加到URL的结尾，后面跟着用&号连接起来的"名称/值"。
 
@@ -477,6 +449,7 @@ Web上最常见的请求类型就是GET请求，每次在浏览器中输入URL�
 首先，函数检查URL中是否已经存在一个问号（存在就表示已经有参数了）。如果没有，函数就追加一个问号，否则就追加一个&号。
 
 举例：
+
 ```
     <script type="text/javascript">
       function createXMLHTTP() {
@@ -500,13 +473,10 @@ Web上最常见的请求类型就是GET请求，每次在浏览器中输入URL�
       url = addURLParam(url, "age", "25");
       oRequest.open("get", url, false);
     </script>
-
 ```
-
 一般情况下，用同步的方式请求不安全，最好用异步的方式请求。
 
 ```javascript
-
 <script type="text/javascript">
   function createXMLHTTP() {
     var arrSignatures = ["MSXML2.XMLHTTP.5.0", "MSXML2.XMLHTTP.4.0",
@@ -537,10 +507,8 @@ Web上最常见的请求类型就是GET请求，每次在浏览器中输入URL�
     oRequest.open("get", url, false);
   }
 </script>
-
 ```
-
-4. 进行`POST请求`
+4.进行`POST请求`
 
 `POST请求`用于在表单中输入数据后的提交过程，因为`POST`可以比`GET方式`发送更多数据（最多2GB），POST请求的参数也必须进行编码，并用&进行分割，但是这些参数不会被附加到URL上。
 
@@ -579,11 +547,11 @@ Web上最常见的请求类型就是GET请求，每次在浏览器中输入URL�
 
 注意：该小节所有关于HTTP请求的代码都在本地根目录下面运行，没有配置服务器环境的同学们，请配置好环境之后，再来测试该代码。
 
-四．`LiveConnect`请求
+四、`LiveConnect`请求
 
  `LiveConnect`由`Netscape Navigator`引入，一般可以让JavaScript与Java类实现交互的能力。用户必须安装JRE,并且还需在浏览器中启用Java。
 
-1. 进行GET请求：
+1.进行GET请求：
 
 * 创建`java.net.URL`的实例
 
@@ -593,7 +561,7 @@ Web上最常见的请求类型就是GET请求，每次在浏览器中输入URL�
 
 * 最好的方法是创建一个`InputStreamReader`，然后再基于它创建一个`BufferReader`。
 
-```java
+```
 function httpGet(url) {
 
     var ourl = new java.net.URL(url);
@@ -615,11 +583,9 @@ function httpGet(url) {
     return oResponseText;
 }
 ```
-
 注意：与`XMLHTTP`请求对象不同，`LiveConnect`要求输入完整的请求的URL，从`http://`开始，这是因为，这个Java对象没有任何解释相对URL的上下文。
 
-
-2.   进行POST请求
+2.进行POST请求
 
 * 使用`Connection对象`来协助进行请求确定连接对象的设置.
 
@@ -633,8 +599,7 @@ function httpGet(url) {
 
 * 从连接中取得输入流并逐行读取数据。
 
-
-```java
+```
 function httpPost(url, sParams) {
     var ourl = new java.net.URL(url); //创建java.net.URL的实例
 
@@ -657,7 +622,6 @@ function httpPost(url, sParams) {
     output.close();
 
     var sLine ="", sResponseText = "";
-
     var input = new java.io.DataInputStream(oConnection.getInputStream());
        sLine = input.readLine();
            while (sLine != null) {
@@ -666,15 +630,11 @@ function httpPost(url, sParams) {
 
               sLine = input.readLine();
          } 
-
        input.close();
-
        return oResponseText;
 }
-
 ```
-
-五． 智能HTTP请求
+五、智能HTTP请求
 
 检测是否要使用`XMLHTTP`请求对象，判断`XMLHTTPRequest`的类型是否等于`"object"`(针对标准浏览器)，以及`window.ActiveXObject`(针对IE浏览器)是否有效
 
@@ -694,13 +654,11 @@ function httpPost(url, sParams) {
 
 * 如果浏览器不支持`XMLHTTP`请求，就必须检查是否用了`LiveConnect`，没有任何特性或者设置能够表示`LiveConnect`是否可用，唯一的办法是用`navigator.javaEnabled()`方法来保证已经浏览器中的java,并）判断java和`java.net`是否已定义。
 
-
 * 如果要模仿异步调用，可用`setTimeout()`来延迟这一段时间，然后在调用回到函数。
 
 * 因为LiveConnect要求必须输入完整的URL，所以每次都必须提供完整的URL给`Http.get()`方法
 
 ```
-
 var bXmlHttpSupport = (typeof XMLHttpRequest == “object” || window.ActiveXObject);
 
 Http.get = function (url, fnCallback) {
@@ -716,13 +674,9 @@ Http.get = function (url, fnCallback) {
        if (oRequest.readyState == 4) {
 
        fnCallback(oRequest.responseText);
-
+  }
 }
-
-}
-
 oRequest.send(null);
-
 } 
 else if(navigator.javaEnabled()&&typeof java != "undefined"
 
@@ -735,21 +689,14 @@ setTimeout(function() {
 }, 10);
 
 } else {
-
        alert("你的浏览器不支持HTTP请求!");
-
   }
-
 }
-
 ```
-
 `post()`方法：对请求首部的设置、参数的数量以及方法发送的是一个`POST`请求，除了需要三个参数（URL、参数字符串和回调函数）外，`post()`方法类似于get()方法，大家可以参照get()方法来对比着看，不过get()只需要两个参数。
 
 ```javascript
-
 var bXmlHttpSupport = (typeof XMLHttpRequest == “object” || window.ActiveXObject);
-
 Http.post = function(url, sParams, fnCallback) {
 
         if (bXmlHttpSupport) {
@@ -758,20 +705,15 @@ Http.post = function(url, sParams, fnCallback) {
 
        oRequest.open(“post”, url, true);
 
-       oRequest.setRequestHeader(“Content-Type”,
+       oRequest.setRequestHeader(“Content-Type”,“application/x-www-form-urlencoded”);
 
-“application/x-www-form-urlencoded”);
-
-                     oRequest.onreadysatechange = function() {
+       oRequest.onreadysatechange = function() {
 
        if (oRequest.readyState == 4) {
 
               fnCallback(oRequest.responseText);
-
-}
-
-}
-
+     }
+  }
 } else if ((navigator.javaEnabled() && typeof java != “undefined”
 
 && type java.net != “undefined”) {
@@ -783,11 +725,9 @@ Http.post = function(url, sParams, fnCallback) {
 }, 10);
 
 } else {
-
        alert(“你的浏览器不支持HTTP请求!”);
-
-}
-
+  }
 }
 ```
+
 
