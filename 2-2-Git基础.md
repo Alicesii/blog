@@ -40,7 +40,7 @@ Date:   Thu Jul 12 16:17:32 2018 +0800
     Create README.md
 ```
 
-git log会按提交时间列出所有的更新，最近的更新排在最上面，这个命令会列出每个提交的`SHA-1`校验和、作者的名字和电子邮件地址、提交时间以及提交说明。
+`git log`会按提交时间列出所有的更新，最近的更新排在最上面，这个命令会列出每个提交的`SHA-1`校验和、作者的名字和电子邮件地址、提交时间以及提交说明。
 
 git log命令有许多选项可以帮助你搜寻你所要找的提交。
 
@@ -220,7 +220,7 @@ $ git log --since= "2 years 1 day 3 minutes ago"
 $ git log -Sfunction_name
 ```
 
-举例：要查看Git仓库中，2018年7月期间，作者ying提交7 6的文件。
+举例：要查看Git仓库中，2018年7月期间，作者ying提交的文件。
 
 ```
 $ git log --pretty=format:"%h - %s" --author=ying --since="2018-07-01" --before="2018-08-01"

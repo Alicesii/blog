@@ -87,7 +87,7 @@ develop或next分支不需要保持绝对稳定，一旦达到稳定状态，就
 
 举例：
 
-你在master分支上工作到C1，这时为了解决问题#18而新建iss91分支，在iss91分支上工作到C4，对于问题#18你又有了新的想法，所有你再新建一个iss91v2分支试图用另一种方法解决问题#18，接着你回到master分支工作了一会儿，你又冒出了一个不太确定的想法，于是你在C10的时候新建一个dumbidea分支，并在上面解决该问题。
+你在master分支上工作到C1，这时为了解决问题`#18`而新建iss91分支，在iss91分支上工作到C4，对于问题`#18`你又有了新的想法，所有你再新建一个iss91v2分支试图用另一种方法解决问题#18，接着你回到master分支工作了一会儿，你又冒出了一个不太确定的想法，于是你在C10的时候新建一个dumbidea分支，并在上面解决该问题。
 
 ![ ](https://www.cnblogs.com/images/cnblogs_com/cliy-10/1268239/o_27.png)
 拥有多个特性分支的提交历史
@@ -103,7 +103,7 @@ develop或next分支不需要保持绝对稳定，一旦达到稳定状态，就
 
 命名形式：(remote)/(branch)
 
-举例：查看最后一次与远程仓库origin通信时master分支的状态，可以查看origin/master。
+举例：查看最后一次与远程仓库origin通信时master分支的状态，可以查看origin/master分支。
 
 假设从Git服务器git.ying.com上克隆一个项目，Git的pull命令会为你自动将其命名为origin，拉取它的所有数据，创建一个指向它的master分支的指针，并且在本地将其命名为origin/master。
 
@@ -125,23 +125,27 @@ origin/master指针不会移动
 ![ ](https://www.cnblogs.com/images/cnblogs_com/cliy-10/1268239/o_31.png)
 本地与远程的工作分叉
 
-`git fetch origin`命令：向远程仓库同步你的工作。
+`git pull origin`命令：向远程仓库同步你的工作。
 
-`git fetch origin`命令：查找`"origin"`是哪一个服务器(git.ying.com)，从中抓取本地没有的数据，并且更新本地数据库，移动origin/master指针指向新的、更新后的位置。
+`git pull origin`命令：查找`"origin"`是哪一个服务器(git.ying.com)，从中抓取本地没有的数据，并且更新本地数据库，移动origin/master指针指向新的、更新后的位置。
 
 ![ ](https://www.cnblogs.com/images/cnblogs_com/cliy-10/1268239/o_32.png)
-
-`git fetch`命令更新远程仓库地引用
+`git pull`命令更新远程仓库地引用
 
 举例：
 
-假设Git服务器git.ying.com
+假设存在另一个内部的Git服务器，用于开发新的项目，这个服务器位于`git.my_ying.com`，我们可以添加另一个新的远程仓库引用到当前新的项目。
 
-### 5.1.推送
+`git remote add`命令：添加一个新的远程仓库引用到当前的项目，远程仓库的命名为`my_ying`。
 
-### 5.2.跟踪分支
 
-### 5.3.拉取
+![ ](https://www.cnblogs.com/images/cnblogs_com/cliy-10/1268239/o_33.png)
+添加另一个远程仓库
 
-### 5.4.删除远程分支
+
+运行`git pull origin`命令来抓取远程仓库`my_ying`而本地没有的数据，这台服务器上现有的数据是origin服务器上的一个子集，所以Git并不会抓取数据而是会设置远程跟踪分支`my_ying/master`指向`my_ying`的master分支。
+
+![ ](https://www.cnblogs.com/images/cnblogs_com/cliy-10/1268239/o_34.png)
+远程跟踪分支`my_ying/master`
+
 

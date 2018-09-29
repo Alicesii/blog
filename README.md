@@ -6,6 +6,30 @@
 
 ### [2.浅谈ajax](https://github.com/Alicesii/blog/blob/master/%E6%B5%85%E8%B0%88ajax.md)
 
+## Camera tuning小组日报
+
+### [9.2018-09-18](https://github.com/Alicesii/blog/blob/master/C-2018-09-18.md)
+
+### [8.2018-09-17](https://github.com/Alicesii/blog/blob/master/C-2018-09-17.md)
+
+### [7.2018-09-14](https://github.com/Alicesii/blog/blob/master/C-2018-09-14.md)
+
+### [6.2018-09-13](https://github.com/Alicesii/blog/blob/master/C-2018-09-13.md)
+
+### [5.2018-09-12](https://github.com/Alicesii/blog/blob/master/C-2018-09-12.md)
+
+### [4.2018-09-11](https://github.com/Alicesii/blog/blob/master/C-2018-09-11.md)
+
+### [3.2018-09-10](https://github.com/Alicesii/blog/blob/master/C-2018-09-10.md)
+
+### [2.2018-09-7](https://github.com/Alicesii/blog/blob/master/C-2018-09-07.md)
+
+### [1.2018-09-6](https://github.com/Alicesii/blog/blob/master/C-2018-09-06.md)
+
+## Git
+
+### [1.]()
+
 ##  Gulp
 
 ### [1.Gulp详解](https://github.com/Alicesii/blog/blob/master/Gulp%E8%AF%A6%E8%A7%A3.md)
@@ -21,6 +45,22 @@
 ## ICON
 
 ### [1.三种方式制作ICON](https://github.com/Alicesii/blog/blob/master/%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%88%B6%E4%BD%9CICON.md)
+
+## JavaScript
+
+### 2-
+
+### 2-
+
+### 3-
+
+### 4-
+
+### 面向对象的JavaScript
+
+### 闭包
+
+### this、call和apply
 
 ## JavaScript框架
 
@@ -48,6 +88,8 @@
 
 ### [12.jQuery常用方法之文档处理](https://github.com/Alicesii/blog/blob/master/jQuery%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%E4%B9%8B%E6%96%87%E6%A1%A3%E5%A4%84%E7%90%86.md)
 
+## Less
+
 ## Yquery
 
 ### [1.JS封装库](https://github.com/Alicesii/blog/blob/master/Yquery.md)
@@ -70,6 +112,8 @@
 
 ### [2.jQuery-color](https://github.com/Alicesii/blog/blob/master/jQuery-color.md)
 
+## 服务器
+
 ## 浏览器兼容性
 
 ### [1.IE浏览器和标准浏览器的兼容性问题](https://github.com/Alicesii/blog/blob/master/Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2.md)
@@ -77,6 +121,8 @@
 ## 浏览器内核
 
 ### [1.常见的浏览器内核](https://github.com/Alicesii/blog/blob/master/%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%86%85%E6%A0%B8.md)
+
+## 禅意花园
 
 ## 设计模式
 
@@ -114,23 +160,8 @@
 
 ### [1.js的解析与执行过程](https://github.com/Alicesii/blog/blob/master/javaScript%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9A%84%E4%BA%94%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F.md)
 
-## JavaScript
 
-### 2-
 
-### 2-
-
-### 3-
-
-### 4-
-
-### 面向对象的JavaScript
-
-### 闭包
-
-### this、call和apply
-
-## Git
 
 
 
