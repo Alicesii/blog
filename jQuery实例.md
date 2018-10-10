@@ -125,21 +125,17 @@ about:
                 padding: 0;
                 margin: 0;
             }
-            
             ul {
                 list-style-type: none;
             }
-            
             .parentWrap {
                 width: 200px;
                 text-align: center;
             }
-            
             .menuGroup {
                 border: 1px solid #999;
                 background-color: #e0ecff;
             }
-            
             .groupTitle {
                 display: block;
                 height: 20px;

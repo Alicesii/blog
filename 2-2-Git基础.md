@@ -1,309 +1,193 @@
 ---
 title: 2-2-Git基础
 comments: true
-date: 2018-07-26 15:35:02
+date: 2018-07-24 22:58:09
 categories: 博客列表
 tags: Git
 about:
 
 ---
 
-## 3.查看提交历史
+### 2.5.忽略文件
 
-`git log`命令用来查看某个项目的提交历史，我们可以查看提交了若干更新或者是克隆的某个项目提交历史记录。
-
-```
-$ git pull origin master
-$ git log
-commit 011909b7b4e8942a5f18a7bb52a25dd63623c3aa
-Author: 255255255255 <33173766+255255255255@users.noreply.github.com>
-Date:   Sun Jul 29 18:03:16 2018 +0800
-
-    blog-third
-
-commit 2d428927038fc78846f7c4b21906bcede964226c
-Author: 255255255255 <33173766+255255255255@users.noreply.github.com>
-Date:   Sun Jul 29 17:51:44 2018 +0800
-
-    README.md
-
-commit c96f1e2772d2c0a45734fa5f4ef68d1070812186
-Author: ying <1511317497@qq.com>
-Date:   Tue Jul 17 11:20:25 2018 +0800
-
-    blog-second
-
-commit d585eaa4e1eac4a181c55acf5ce045d76c901ceb
-Author: 255255255255 <33173766+255255255255@users.noreply.github.com>
-Date:   Thu Jul 12 16:17:32 2018 +0800
-
-    Create README.md
-```
-
-`git log`会按提交时间列出所有的更新，最近的更新排在最上面，这个命令会列出每个提交的`SHA-1`校验和、作者的名字和电子邮件地址、提交时间以及提交说明。
-
-git log命令有许多选项可以帮助你搜寻你所要找的提交。
-
-* `-p`按补丁格式显示每次提交的内容差异，可以加上数字(-2)它将限制输出长度，也就意味着仅显示最近两次的提交。
+一般我们总会有些文件无需放入Git管理，也不希望它们总出现在未跟踪文件列表，这时我们可以创建一个
+`.gitignore`的文件，列出要忽略的文件模式。
 
 ```
-$ git log -p -2
-commit 011909b7b4e8942a5f18a7bb52a25dd63623c3aa
-Author: 255255255255 <33173766+255255255255@users.noreply.github.com>
-Date:   Sun Jul 29 18:03:16 2018 +0800
-
-    blog-third
-
-diff --git "a/README.md" "b/README.md"
-index aae07c6..4bfc990 100644
---- "a/README.md"
-+++ "b/README.md"
-@@ -165,7 +165,6 @@ A.prototype.name="张三";
- function B(){
- }
- B.prototype=new A();
--
- var b=new B();
- console.log(b.name);  //张三
- console.log(b.age);  //undefined
+touch .gitignore
+*.[oa]
+*~
 ```
 
- -p选项除了显示基本信息之外，还附带了每次commit的变化。
+第一行告诉Git忽略所有以`.o`或`.a`结尾的文件
 
-* `--stat`显示每次更新的文件修改统计信息
+第二行告诉Git忽略所有以波浪符`（~）`结尾的文件
 
-```
-$ git log --stat
-commit 011909b7b4e8942a5f18a7bb52a25dd63623c3aa
-Author: 255255255255 <33173766+255255255255@users.noreply.github.com>
-Date:   Sun Jul 29 18:03:16 2018 +0800
+文件`.gitignore`的格式规范如下：
 
-    blog-third
+* 所有空行或者以`＃`开头的行都会被Git忽略。
 
-  README.md | 1 -
- 1 file changed, 1 deletion(-)
+* 可以使用标准的glob模式匹配(正则表达式)。
 
-commit 575b0cc7ab8a6ce8b107ac0e4b5bc7636b7897c1
-Author: 255255255255 <33173766+255255255255@users.noreply.github.com>
-Date:   Sun Jul 29 18:01:49 2018 +0800
+* 匹配模式可以以`（/）`开头防止递归。
 
-    blog-third
+* 匹配模式可以以`（/）`结尾指定目录。
 
- "README.md" | 2 --
- 1 file changed, 2 deletions(-)
-```
+* 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号`（!）`。
 
---stat选项在每次提交的下面列出所有被修改过的文件、有多少文件被修改了以及被修改过的文件的哪些行被移除或是添加了。
+参考链接：https://github.com/github/gitignore
 
-* `--shortstat`：只显示`--stat`中最后的行数修改添加移除统计。
+### 2.6.查看已暂存和未暂存的修改
 
-* `--name-only`：仅在提交信息后显示已修改的文件清单。
-
-* `--name-status`：显示新增、修改、删除的文件清单。
-
-* `--abbrev-commit`：仅显示SHA-1的前几个字符，而非所有的40个字符。
-
-* `--relative-date`：使用较短的相对时间显示
-
-* `--graph`：显示ASCCII图形表示的分支合并历史。
-
-* `--pretty`：指定使用不同于默认格式的方式展示提交历史。可用的选项包括oneline，short，full，fuller 和format。
-
-oneline表示将每个提交放在一行显示。
+假如我们再次修改README.md文件后暂存，然后编辑five.html文件后先不暂存，我们可以看下当前的状态：
 
 ```
-$ git log --pretty=oneline
-011909b7b4e8942a5f18a7bb52a25dd63623c3aa blog-third
-2d428927038fc78846f7c4b21906bcede964226c README.md
-5f007ee5cf5fa337420265c713b5717c72763500 first-javascript
-c96f1e2772d2c0a45734fa5f4ef68d1070812186 blog-second
-d585eaa4e1eac4a181c55acf5ce045d76c901ceb Create README.md
-dceb7854ab9a316e3800046852f399dde075aaed Delete README.md
-abd37e003368157d02f6f9e2e948ff72322c9890 blog-first
-```
-
-format可以定制要显示的记录格式。
-
-%H 提交对象（commit）的完整哈希字串
-
-%h 提交对象的简短哈希字串
-
-%T 树对象（tree）的完整哈希字串
-
-%t 树对象的简短哈希字串
-
-%P 父对象（parent）的完整哈希字串
-
-%p 父对象的简短哈希字串
-
-%an 作者（author）的名字
-
-%ae 作者的电子邮件地址
-
-%ad 作者修订日期（可以用--date=选项定制格式）
-
-%ar 作者修订日期，按多久以前的方式显示
-
-%cn 提交者（committer）的名字
-
-%ce 提交者的电子邮件地址
-
-%cd 提交日期
-
-%cr 提交日期，按多久以前的方式显示
-
-%s 提交说明
-
-```
-$ git log --pretty=format:"%h - %an,%ar : %s"
-011909b - 255255255255,3 hours ago : blog-third
-2d42892 - 255255255255,3 hours ago : README.md
-5f007ee - ying,7 days ago : first-javascript
-c96f1e2 - ying,12 days ago : blog-second
-d585eaa - 255255255255,2 weeks ago : Create README.md
-dceb785 - 255255255255,2 weeks ago : Delete README.md
-abd37e0 - ying,2 weeks ago : blog-first
-```
-
-注意：作者和提交者的差别
-
-作者指的是实际作出修改的人，提交者指的是最后将此工作成果提交到仓库的人。假设当你为某个项目发布补丁，然后某个核心成员将你的补丁并入项目时，你就是作者，而那个核心成员就是提交者。
-
-我们可以灵活的组合使用git log命令的这些选项。
-
-```
-$  git log --pretty=format:"%h %s" --graph
-* 011909b blog-third
-* 575b0cc blog-third
-* 9dcb0d7 blog-third
-* 050b346 blog-third
-* 2d42892 README.md
-* 9e2b474 README.md
-* 5f007ee first-javascript
-* c96f1e2 blog-second
-* d585eaa Create README.md
-* dceb785 Delete README.md
-* abd37e0 blog-first
-```
-
-### 3.1.限制输出长度
-
-我们不仅可以定制输出格式的选项，还可以限制输出长度，也就是只输出部分提交信息。
-
-* -(n)仅显示最近的n条提交
-
-```
-$ git log -p -2
-```
-
-n可以是任何整数，表示仅显示最近的若干条提交
-
-* --since, --after仅显示指定时间之后的提交。
-
-```
-$ git log --since=2.weeks
-$ git log --since="2018-07-29"
-$ git log --since= "2 years 1 day 3 minutes ago"
-```
-
-* --until, --before仅显示指定时间之前的提交。
-
-* --author 仅显示指定作者相关的提交。
-
-* --committer 仅显示指定提交者相关的提交。
-
-* --grep仅显示含指定关键字的提交
-
-* -S仅显示添加或移除了某个关键字的提交。例如，想找出添加或移除了某一个特定函数的引用的提交。
-
-```
-$ git log -Sfunction_name
-```
-
-举例：要查看Git仓库中，2018年7月期间，作者ying提交的文件。
-
-```
-$ git log --pretty=format:"%h - %s" --author=ying --since="2018-07-01" --before="2018-08-01"
-
-7022a10 - second-Git
-9358d27 - first-Git
-```
-
-## 4.撤销操作
-
-在任何一个阶段，你都有可能想要撤消某些操作，但是有些撤销操作是不可逆的。
-
-有时我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。这时，可以运行带有`--amend`选项的提交命令尝试重新提交。
-
-```
-$ git commit --amend
-```
-
-该命令会将暂存区中的文件提交。如果自上次提交以来你还未做任何修改，那么快照会保持不变，而你所修改的只是提交信息。
-
-举例：你提交后发现忘记了暂存某些需要的修改，这时，就可以运用该命令了。
-
-```
-$ git commit -m 'initial commit'
-$ git add forgotten_file.md
-$ git commit --amend
-```
-
-最终你只会有一个提交 - 第二次提交将代替第一次提交的结果。
-
-### 4.1.取消暂存的文件
-
-如果你已经修改了两个文件并且想要将它们作为两次独立的修改提交，但是却输入了`git add *`同时暂存了它们两个。如何只取消暂存两个中的一个呢？
-
-```
-$ git add *
 $ git status
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-        new file:   one.html
-        new file:   two.html
-```
+        modified:   README.md
 
-上述代码已经提示的很清楚，使用`"git reset HEAD <file>..."`来取消暂存文件。
-
-```
-$ git reset HEAD one.html
-$ git status
-On branch master
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
-
-        new file:   two.html
 Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
 
-         new file: one.html
+        modified:   five.html
 ```
 
-我们可以看到one.html文件已经被修改为未暂存的状态。
+如果你想知道具体修改了什么地方，`git status`命令的输出的结果太过模糊，我们可以使用`git diff`命令。通过该命令我们可以知道：
 
-### 4.2.撤销对文件的修改
+* 当前做的哪些更新还没有暂存？
 
-```
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-         new file: one.html
-```
-
-如何撤销对文件的修改，也就是将它还原成上次提交时的样子（或者刚克隆完的样子，或者刚把它放入工作目录时的样子），我们还需要依照提示来做：使用`"git checkout -- <file>..."`来撤销对文件的修改。
+* 有哪些更新已经暂存起来准备好了下次提交？
 
 ```
-$ git checkout -- one.html
+$ git diff
+diff --git a/five.html b/five.html
+index 59a5ccd..a4e2f77 100644
+--- a/five.html
++++ b/five.html
+@@ -55,7 +55,6 @@
+<h3>效益</h3>
+<p>为什么要参加？为了识别、灵感和资源，我们都可以向人们展示</p></div>
+<div class="requirements" id="zen-requirements" role="article">
+<h3>要求</h3>
+<p>在可能的情况下,实用的而不是2%的浏览公众最新的流血技巧。我们唯一的真正要求是您的验证</p>
+```
+
+`git diff`命令比较的是工作目录中当前文件和暂存区域快照之间的差异，也就是修改之后还没有暂存起来的变化内容。
+
+我们可以使用`git diff --cached`查看已暂存的将要添加到下次提交里的内容。
+
+```
+$ git diff --cached
+diff --git a/five.html b/five.html
+index e231252..59a5ccd 100644
+--- a/five.html
++++ b/five.html
+@@ -4,17 +4,14 @@
+<head>
+<meta charset="utf-8">
+<title>CSS禅意花园:CSS设计之美</title>
+</head>
+<body id="css-zen-garden">
+<div class="page-wrapper">
+<section class="intro" id="zen-intro">
+ <header role="banner">
+ <h1>CSS Zen Garden</h1>
+@@ -35,7 +32,6 @@
+<p>CSS禅园邀请你放松和沉思大师们的重要课程</p>
+</div>
+</section>
+@@ -43,12 +39,10 @@
+<div class="participation" id="zen-participation" role="article">
+<h3>参与</h3>
+<p>您可以按照您希望的任何方式修改样式表</p>
+<p>下载示例和
+@@ -129,7 +123,6 @@
+ </ul>
+  </nav>
+ </div>
+```
+
+### 2.7.提交更新
+
+在提交之前，一定要确认还有没有什么修改过的或新建的文件还没有`git add`过，否则提交的时候不会记录这些还没暂存起来的变化。
+
+```
+git commit
+```
+
+`git commit`命令会启动文本编辑器以便输入本次提交的说明。
+
+```
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+# new file: README.md
+# modified: five.html
+#
+~
+~
+~
+```
+
+我们可以看出，默认的提交消息包含最后一次运行`git status`的输出，全都放在注释行中。
+
+我们大多数的用法是在commit命令后面添加-m选项，将提交信息与命令放在同一行。
+
+```
+$ git commit -m 'first-commit'
+[master 4f38a76] first-commit
+ 3 files changed, 3 insertions(+), 10 deletions(-)
+ create mode 100644 README.md
+ create mode 100644 five.html
+
+```
+
+至此，我们已经完成了第一个提交，提交之后会显示当前在哪个分支提交的，本次提交的完整SHA-1校验和是4f38a76，以及在本次提交中，有多少文件修订过，多少行添加和修改过。
+
+### 2.8.跳过使用暂存区域
+
+我们可以将`git add`和`git commit`命令的功能合并成为一个命令，那就是`git commit -a`。
+
+ 该命令就是跳过使用暂存区域，也就是说Git会自动把所有已跟踪过的文件暂存起来一并提交。这个基本不太使用，大家了解一下就好。
+
+### 2.9.移除文件
+
+`git rm`命令:从已跟踪文件清单中移除某个文件，更明确地说是从暂存区域移除，也就是说从暂存区域并连带从工作目录中删除指定文件，这样以后就不会出现在未跟踪文件清单中了。
+
+如果只是从工作目录删除文件，运行`git status`时所删除的文件就会在`"Changes not staged for commit"`部分(未暂存清单)中看到：
+
+```
+$ rm README.md
 $ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    README.md
+```
+
+我们可以使用`git rm`命令删除文件看下与普通的删除文件的区别：
+
+```
+$ git rm README.md
+rm README.md
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
+        deleted:   README.md
+```
 
-        new file:   one.html
-        new file:   two.html
+从暂存区域并连带从工作目录中删除了README.md文件，也就意味着该文件就不在纳入版本管理了。
+
+如果我们想把文件从Git仓库中删除(从暂存区域移除)，但仍然希望保留在当前工作目录中。也就是说，想让文件保留在磁盘，但是并不想让Git继续跟踪(.gitignore文件的作用)。可以在上添加`git rm`命令上添加`--cached`选项：
+
+
+```
+$ git rm --cached README.md
 ```

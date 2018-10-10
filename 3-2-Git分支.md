@@ -173,7 +173,7 @@ README.md | 1 +
 
 Git会使用两个分支的末端所指的快照(C4和C5)以及这两个分支的工作祖先(C2)，做一个简单的三方合并。
 
-![ ]https://www.cnblogs.com/images/cnblogs_com/cliy-10/1268239/o_23.png)
+![ ](https://www.cnblogs.com/images/cnblogs_com/cliy-10/1268239/o_35.png)
 一次典型合并中所用到的三个快照
 
 Git将三方合并的结果做了一个新的快照并且自动创建一个新的提交指向它，这个被称作一次合并提交
