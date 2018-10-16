@@ -1,8 +1,8 @@
----
+﻿---
 title: call和apply的用途
 comments: true
-date: 2018-07-16 19:00:20
-categories: 博客列表
+date: 2018-05-16 19:00:20
+categories: 前端
 tags: JavaScript
 
 ---

@@ -1,8 +1,8 @@
 ﻿---
 title: 认识Git
 comments: true
-date: 2018-07-22 07:40:29
-categories: 博客列表
+date: 2018-08-01 07:40:29
+categories: 前端
 tags: Git
 about:
 

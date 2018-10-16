@@ -1,8 +1,8 @@
----
+﻿---
 title: ajax()函数的封装
 comments: true
-date: 2018-06-15 18:33:45
-categories: 博客列表
+date: 2018-07-15 18:33:45
+categories: 前端
 tags: AJAX
 about:
 

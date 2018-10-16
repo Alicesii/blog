@@ -1,8 +1,8 @@
----
+﻿---
 title: jQuery常用方法之属性
 comments: true
-date: 2018-05-19 15:09:31
-categories: 博客列表
+date: 2018-06-19 15:09:31
+categories: 前端
 tags: JavaScript框架
 about:
 

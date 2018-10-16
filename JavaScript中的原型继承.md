@@ -1,8 +1,8 @@
----
+﻿---
 title: JavaScript中的原型继承
 comments: true
-date: 2018-07-12 11:20:50
-categories: 博客列表
+date: 2018-05-12 11:20:50
+categories: 前端
 tags: JavaScript
 
 ---

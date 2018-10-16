@@ -1,8 +1,8 @@
----
+﻿---
 title: javaScript客户端与服务器端的五种通信方式
 comments: true
-date: 2018-06-04 10:06:12
-categories: 博客列表
+date: 2018-07-04 10:06:12
+categories: 前端
 tags: 客户端与服务器通信方式
 about:
 

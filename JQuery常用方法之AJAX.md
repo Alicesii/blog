@@ -1,8 +1,8 @@
----
+﻿---
 title: jQuery常用方法之AJAX
 comments: true
-date: 2018-05-06 20:55:22
-categories: 博客列表
+date: 2018-06-06 20:55:22
+categories: 前端
 tags: JavaScript框架
 about:
 

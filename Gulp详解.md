@@ -1,8 +1,8 @@
----
+﻿---
 title: Gulp详解
 comments: true
 date: 2018-07-02 09:56:31
-categories: 博客列表
+categories: 前端
 tags: Gulp
 about:
 

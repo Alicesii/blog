@@ -2,7 +2,7 @@
 title: Hexo+Github搭建个人博客
 comments: true
 date: 2018-04-01 16:35:14
-categories: 博客列表
+categories: 前端
 tags: Hexo Github
 img:
 

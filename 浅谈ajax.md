@@ -1,9 +1,9 @@
----
+﻿---
 
 title: 浅谈ajax
 comments: true
-date: 2018-06-12 10:16:37
-categories: 博客列表
+date: 2018-07-12 10:16:37
+categories: 前端
 tags: AJAX
 about:
 

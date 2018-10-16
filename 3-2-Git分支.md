@@ -1,8 +1,8 @@
 ---
 title: 3-2-Git分支
 comments: true
-date: 2018-08-03 19:00:39
-categories: 博客列表
+date: 2018-08-11 19:00:39
+categories: 前端
 tags: Git
 about:
 

@@ -1,8 +1,8 @@
 ---
 title: 2-1-Git基础
 comments: true
-date: 2018-07-24 10:16:20
-categories: 博客列表
+date: 2018-08-02 10:16:20
+categories: 前端
 tags: Git
 about:
 

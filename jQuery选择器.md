@@ -1,8 +1,8 @@
----
+﻿---
 title: jQuery选择器详解
 comments: true
-date: 2018-05-02 19:20:42
-categories: 博客列表
+date: 2018-06-02 19:20:42
+categories: 前端
 tags: JavaScript框架
 about:
 
